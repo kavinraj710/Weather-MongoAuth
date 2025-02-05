@@ -1,0 +1,215 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject SupabaseService supabaseService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
+<PageTitle>Home</PageTitle>
+<MudLayout>
+    <MudPaper Elevation="3" Class="p-5 full-height-content background-image" Style="background-color: transparent; border-radius: 16px; display: flex; flex-direction: column; align-items: center;">
+        <MudContainer MaxWidth="MaxWidth.Medium" Class="text-center" Style="width: 100%;">
+            <!-- Welcome Section -->
+            <MudText Typo="Typo.h2" Align="Align.Center" Class="welcome-title mb-2">
+                🌤️ Welcome to Weather Dashboard
+            </MudText>
+            <MudText Typo="Typo.body1" Align="Align.Center" Class="welcome-description mb-4">
+                Your one-stop solution for accurate and real-time weather forecasts, personalized for you.
+            </MudText>
+
+            <!-- Dynamic Greeting -->
+            <AuthorizeView>
+                <Authorized>
+                    <MudText Typo="Typo.h5" Class="mb-2">Hello, <strong>@uname</strong>! We're glad you're here. 😊</MudText>
+                    <MudText Typo="Typo.body1" Class="mb-3">
+                        Explore the latest weather updates tailored to your location and preferences.
+                    </MudText>
+                </Authorized>
+                <NotAuthorized>
+                    <MudText Typo="Typo.h5" Class="mb-2">Welcome, Guest!</MudText>
+                    <MudText Typo="Typo.body1" Class="mb-3">
+                        Sign up or log in to enjoy personalized weather insights and features.
+                    </MudText>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/signup" Class="m-1">Sign Up</MudButton>
+                    <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="/login" Class="m-1">Log In</MudButton>
+                </NotAuthorized>
+            </AuthorizeView>
+
+            <!-- Divider -->
+            <MudDivider Class="my-4" />
+
+            <!-- Favorite Cities Section -->
+            <MudText Typo="Typo.h4" Class="mb-2">🌆 It's Favorite Weather</MudText>
+
+            <div class="favorite-cities-grid">
+                @if (favoriteCities != null && favoriteCities.Any())
+                {
+                    @foreach (var city in favoriteCities)
+                    {
+                        <div class="city-card">
+                            <div class="city-header">
+                                <h2>@(city.location?.Substring(0, 1).ToUpper())@(city.location?.Substring(1).ToLower())</h2>
+                            </div>
+                            <div class="city-body">
+                                <p>@city.description</p>
+                                <span class="city-date">Added: @city.created_at.ToString("MMMM dd, yyyy")</span>
+                            </div>
+                        </div>
+                    }
+                }
+                else if (isLoading)
+                {
+                    <MudText Typo="Typo.body1" Align="Align.Center">Loading your favorite cities...</MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.body1" Align="Align.Center">No favorite cities found. Add some to start!</MudText>
+                }
+            </div>
+        </MudContainer>
+    </MudPaper>
+</MudLayout>
+
+<style>
+    .background-image {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh; /* Ensure it stretches to full viewport height */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .MudLayout {
+        min-height: 100vh; /* Stretch the layout to full viewport height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center everything vertically */
+    }
+
+    /* Align everything to the center */
+    .MudPaper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .MudContainer {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .welcome-title {
+        font-size: 2rem; /* Default for medium screens */
+    }
+
+    .welcome-description {
+        font-size: 1rem;
+    }
+
+    /* Grid layout for favorite cities */
+    .favorite-cities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+        justify-content: center; /* Center items */
+    }
+
+    /* City card styling */
+    .city-card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .city-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+    .city-header {
+        background: linear-gradient(135deg, #4A90E2, #50E3C2);
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 1.5rem;
+    }
+
+    .city-body {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .city-date {
+        font-size: 0.9rem;
+        color: #757575;
+        font-style: italic;
+    }
+</style>
+
+
+@code {
+    private string? uname;
+    private string? email;
+    private string? role;
+    private bool isLoading = true;
+    private List<FavoriteCity> favoriteCities = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch authenticated user's details
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            uname = user.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
+            email = user.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+            role = user.FindFirst("http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
+
+            // Fetch favorite cities
+            await LoadFavoriteCitiesAsync(uname);
+        }
+        else
+        {
+            uname = null;
+            email = null;
+            role = null;
+            isLoading = false;
+        }
+    }
+
+    private async Task LoadFavoriteCitiesAsync(string uname)
+    {
+        try
+        {
+            isLoading = true;
+
+            // Fetch cities from SupabaseService
+            favoriteCities = await supabaseService.GetFavoriteCitiesAsync(uname);
+
+            // Log a message if no data is retrieved
+            if (!favoriteCities.Any())
+                Snackbar.Add("No favorite cities found. Add some cities!", Severity.Info);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("No Notification", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

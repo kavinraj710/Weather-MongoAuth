@@ -1,0 +1,86 @@
+﻿@page "/login"
+@inherits UserContext
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+@inject SupabaseService supabaseService
+@inject AuthenticationStateProvider Auth
+@inject Supabase.Client _supabaseClient
+@inject IJSRuntime _jsRuntime
+@inject ISnackbar Snackbar
+
+<AuthorizeView>
+    <Authorized>
+        @{
+            AutoNavigate();
+        }
+    </Authorized>
+    <Authorizing>
+        <div class="mt-4">
+            <h2>Please Wait...</h2>
+        </div>
+    </Authorizing>
+    <NotAuthorized>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="mt-16 login-container">
+            <MudCard Class="login-card">
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Login</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField @bind-Value="Email" Label="Email" Required="true"
+                                  RequiredError="Email is required!" InputType="InputType.Email" Class="input-field"/>
+                    <MudTextField @bind-Value="Password" Label="Password" Required="true"
+                                  RequiredError="Password is required!" InputType="InputType.Password" Class="input-field"/>
+                </MudCardContent>
+                <MudCardActions Class="d-flex justify-content-center">
+                    <MudButton OnClick="HandleLogin" Variant="Variant.Filled" Color="Color.Primary" Class="login-btn">
+                        Login
+                    </MudButton>
+                </MudCardActions>
+                <MudCardActions Class="d-flex justify-content-center">
+                    <MudButton OnClick="Signuphandle" Variant="Variant.Text" Color="Color.Secondary" Class="signup-link">
+                        Not already Registered?
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudContainer>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    User? user { get; set; }
+
+    [SupplyParameterFromQuery(Name = "ReturnUrl")]
+    public string ReturnUrlPath { get; set; } = "";
+
+    private string Email { get; set; } = "";
+    private string Password { get; set; } = "";
+
+    public void AutoNavigate()
+    {
+        if (string.IsNullOrEmpty(ReturnUrlPath))
+        {
+            NavTo("/");
+        }
+        else
+        {
+            NavTo(ReturnUrlPath);
+        }
+    }
+
+    private void Signuphandle()
+    {
+        NavigationManager.NavigateTo("/signup");
+    }
+
+    public async void HandleLogin()
+    {
+        if (await LoginAsync(Email, Password))
+        {
+            AutoNavigate();
+        }
+        else
+        {
+            Snackbar.Add("Invalid email or password", Severity.Error);
+        }
+    }
+}

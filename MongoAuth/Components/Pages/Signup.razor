@@ -1,0 +1,117 @@
+﻿@page "/signup"
+@rendermode InteractiveServer
+@inherits UserContext
+@using MongoAuth.Services
+@inject SupabaseService supabaseService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Claims
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager Nav
+@inject AuthenticationStateProvider Auth
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-16">
+    
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h5">Signup</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudForm @ref="form" @bind-IsValid="@success">
+                <MudTextField @bind-Value="username" Label="Username" Required="true"
+                              RequiredError="Username is required!" />
+                <MudTextField @bind-Value="email" Label="Email" Required="true"
+                              RequiredError="Email is required!"
+                              InputType="InputType.Email" />
+                <MudTextField @bind-Value="password" Label="Password" Required="true"
+                              RequiredError="Password is required!"
+                              InputType="InputType.Password" />
+                <MudTextField @bind-Value="confirmPassword" Label="Confirm Password" Required="true"
+                              RequiredError="Password confirmation is required!"
+                              InputType="InputType.Password" />
+            </MudForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Button" Variant="Variant.Outlined" Color="Color.Secondary"
+                       
+                       OnClick="NavigateToLogin">Already Registered User</MudButton>
+
+            <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Primary"
+                       Class="ml-auto" OnClick="HandleRegister" Disabled="@(!success)">Register</MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
+
+@code {
+    // private string? usernam { get; set; }
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     var User = ((AuthenticationProvider)Auth).User;
+    //     usernam = User.name;
+    //     Console.WriteLine("From Register"+usernam);
+    //     var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+    //     var user = authState.User;
+
+    //     Console.WriteLine("User Name Claim: " + user.FindFirst(ClaimTypes.Name)?.Value);
+    //     if (user.Identity != null && user.Identity.IsAuthenticated)
+    //     {
+    //         usernam = user.FindFirst(ClaimTypes.Name)?.Value;
+    //         Console.WriteLine("Username retrieved: " + usernam);
+    //     }
+
+
+    // }
+    MudForm form;
+    bool success;
+    string username = string.Empty;
+    string email = string.Empty;
+    string password = string.Empty;
+    string confirmPassword = string.Empty;
+    private void NavigateToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+    private async Task HandleRegister()
+    {
+        if (password != confirmPassword)
+        {
+            Snackbar.Add("Passwords do not match", Severity.Error);
+            return;
+        }
+        // var temp = await MongoService.GetUserByEmail(email);
+        // if (temp != null)
+        // {
+        //     Snackbar.Add("Email already exists", Severity.Error);
+        //     return;
+        // }
+        try
+        {
+            var RegisterResult = await supabaseService.RegisterUser(email, password, username);
+            Console.WriteLine("RegisterResult: " + RegisterResult);
+            Snackbar.Add($"Registration failed!", Severity.Error);
+          
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Registration successful!", Severity.Success);
+         
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+
+    public async void Logout()
+    {
+        Console.WriteLine("Logging out");
+        await DeleteCookie("auth_token");
+        // await Task.Delay(1000);
+        await supabaseService.LogoutAsync();
+        await Task.Delay(1000);
+        Console.WriteLine("Logged out");
+        // await _jsRuntime.InvokeVoidAsync("CookieRemover.Delete", "refreshtoken");
+        await ((AuthenticationProvider)Auth).SetUser(null);     
+        await Task.Delay(1000);
+        Nav.NavigateTo("/login", forceLoad: true);
+    }
+}

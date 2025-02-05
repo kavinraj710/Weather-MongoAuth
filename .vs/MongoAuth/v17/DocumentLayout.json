@@ -1,0 +1,437 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\services\\supabaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\services\\supabaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\mongoauth.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\mongoauth.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F71734E-7ACC-482C-85CD-DBC9CA4DC0AA}|MongoAuth.Shared\\MongoAuth.Shared.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth.shared\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F71734E-7ACC-482C-85CD-DBC9CA4DC0AA}|MongoAuth.Shared\\MongoAuth.Shared.csproj|solutionrelative:mongoauth.shared\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\services\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\services\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\pages\\help.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\pages\\help.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F71734E-7ACC-482C-85CD-DBC9CA4DC0AA}|MongoAuth.Shared\\MongoAuth.Shared.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth.shared\\models\\favourites.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F71734E-7ACC-482C-85CD-DBC9CA4DC0AA}|MongoAuth.Shared\\MongoAuth.Shared.csproj|solutionrelative:mongoauth.shared\\models\\favourites.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\pages\\signup.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\pages\\signup.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\services\\authenticationprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\services\\authenticationprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\services\\customauthorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\services\\customauthorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\ornaments\\logouttext.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\ornaments\\logouttext.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\properties\\publishprofiles\\registry.hub.docker.com_kavin4066.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\properties\\publishprofiles\\registry.hub.docker.com_kavin4066.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|c:\\users\\kavin\\source\\repos\\mongoauth\\mongoauth\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{130750D2-2447-4117-A3C1-76EB23905853}|MongoAuth\\MongoAuth.csproj|solutionrelative:mongoauth\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KAVIN\\AppData\\Local\\Temp\\e0ecad4b-349e-4101-b7d6-7ba76f3be06a_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KAVIN\\AppData\\Local\\Temp\\01ce435c-7ba4-45e9-9fad-d9d8505ffb79_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MongoAuth.csproj",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\MongoAuth.csproj",
+              "RelativeDocumentMoniker": "MongoAuth\\MongoAuth.csproj",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\MongoAuth.csproj",
+              "RelativeToolTip": "MongoAuth\\MongoAuth.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-05T05:49:24.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SupabaseService.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\SupabaseService.cs",
+              "RelativeDocumentMoniker": "MongoAuth\\Services\\SupabaseService.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\SupabaseService.cs",
+              "RelativeToolTip": "MongoAuth\\Services\\SupabaseService.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAgwKMAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T12:11:11.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Pages\\Weather.razor",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAM0AAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T07:04:13.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Pages\\Login.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Login.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Pages\\Login.razor",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAAA8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T11:49:09.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAANcAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T07:39:57.138Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Favourites.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\Models\\Favourites.cs",
+              "RelativeDocumentMoniker": "MongoAuth.Shared\\Models\\Favourites.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\Models\\Favourites.cs",
+              "RelativeToolTip": "MongoAuth.Shared\\Models\\Favourites.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBMAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-14T16:40:49.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Help.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Help.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Pages\\Help.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Help.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Pages\\Help.razor",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAAAEIAAACkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-08T16:33:08.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JwtTokenService.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\JwtTokenService.cs",
+              "RelativeDocumentMoniker": "MongoAuth\\Services\\JwtTokenService.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\JwtTokenService.cs",
+              "RelativeToolTip": "MongoAuth\\Services\\JwtTokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T11:00:05.494Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\Models\\User.cs",
+              "RelativeDocumentMoniker": "MongoAuth.Shared\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\Models\\User.cs",
+              "RelativeToolTip": "MongoAuth.Shared\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T13:37:54.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "MongoAuth\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\appsettings.Development.json",
+              "RelativeToolTip": "MongoAuth\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-07T07:43:11.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Routes.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Routes.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T08:24:29.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\App.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\App.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\App.razor",
+              "ViewState": "AgIAADYAAAAAAAAAAIBJwDIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T08:24:21.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAkAAAAAAAAAAIBJwA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T10:34:26.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Signup.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Signup.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Pages\\Signup.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Signup.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Pages\\Signup.razor",
+              "ViewState": "AgIAAE0AAAAAAAAAAIBJwFoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T11:50:32.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CustomAuthorizeAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\CustomAuthorizeAttribute.cs",
+              "RelativeDocumentMoniker": "MongoAuth\\Services\\CustomAuthorizeAttribute.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\CustomAuthorizeAttribute.cs",
+              "RelativeToolTip": "MongoAuth\\Services\\CustomAuthorizeAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T17:05:20.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Program.cs",
+              "RelativeDocumentMoniker": "MongoAuth\\Program.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Program.cs",
+              "RelativeToolTip": "MongoAuth\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBJwC4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T07:09:06.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AuthenticationProvider.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\AuthenticationProvider.cs",
+              "RelativeDocumentMoniker": "MongoAuth\\Services\\AuthenticationProvider.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Services\\AuthenticationProvider.cs",
+              "RelativeToolTip": "MongoAuth\\Services\\AuthenticationProvider.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAgwC0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:29:45.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "UserContext.cs",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\UserContext.cs",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\UserContext.cs",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\UserContext.cs",
+              "RelativeToolTip": "MongoAuth\\Components\\UserContext.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAUwAYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:19:49.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\_Imports.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\_Imports.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T10:50:19.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "LogoutText.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Ornaments\\LogoutText.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Ornaments\\LogoutText.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Ornaments\\LogoutText.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Ornaments\\LogoutText.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T06:05:39.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "MongoAuth\\Components\\Pages\\Counter.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Components\\Pages\\Counter.razor",
+              "RelativeToolTip": "MongoAuth\\Components\\Pages\\Counter.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T09:08:57.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "MongoAuth\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Properties\\launchSettings.json",
+              "RelativeToolTip": "MongoAuth\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAsAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-14T16:50:53.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "registry.hub.docker.com_kavin4066.pubxml",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Properties\\PublishProfiles\\registry.hub.docker.com_kavin4066.pubxml",
+              "RelativeDocumentMoniker": "MongoAuth\\Properties\\PublishProfiles\\registry.hub.docker.com_kavin4066.pubxml",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Properties\\PublishProfiles\\registry.hub.docker.com_kavin4066.pubxml",
+              "RelativeToolTip": "MongoAuth\\Properties\\PublishProfiles\\registry.hub.docker.com_kavin4066.pubxml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-01-14T07:59:34.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Dockerfile",
+              "RelativeDocumentMoniker": "MongoAuth\\Dockerfile",
+              "ToolTip": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\Dockerfile",
+              "RelativeToolTip": "MongoAuth\\Dockerfile",
+              "ViewState": "AgIAABIAAAAAAAAAAIBZwA4AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-19T06:02:28.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\AppData\\Local\\Temp\\e0ecad4b-349e-4101-b7d6-7ba76f3be06a_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\e0ecad4b-349e-4101-b7d6-7ba76f3be06a_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\AppData\\Local\\Temp\\e0ecad4b-349e-4101-b7d6-7ba76f3be06a_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\e0ecad4b-349e-4101-b7d6-7ba76f3be06a_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-13T10:11:13.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\KAVIN\\AppData\\Local\\Temp\\01ce435c-7ba4-45e9-9fad-d9d8505ffb79_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\01ce435c-7ba4-45e9-9fad-d9d8505ffb79_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\KAVIN\\AppData\\Local\\Temp\\01ce435c-7ba4-45e9-9fad-d9d8505ffb79_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\01ce435c-7ba4-45e9-9fad-d9d8505ffb79_MongoAuth supa.zip.MongoAuth supa.zip\\MongoAuth\\MongoAuth\\Components\\Pages\\Weather.razor",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-13T10:09:31.758Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

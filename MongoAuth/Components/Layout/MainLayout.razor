@@ -1,0 +1,158 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject UserContext UserContext
+@using MudBlazor.Services
+
+<MudSnackbarProvider />
+<CascadingAuthenticationState>
+    <MudThemeProvider />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+    <MudPopoverProvider />
+
+    <MudLayout>
+        <!-- Gradient App Bar -->
+        <MudAppBar Elevation="4" Class="gradient-appbar" Style="color: white; background-color: orange;">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" @onclick="ToggleSidebar" />
+            <center><MudText Typo="Typo.h5">🌧️ Weather Forecast</MudText></center>
+            <MudSpacer />
+            <MudButton Class="hidden-xs" Style="color: white;" @onclick="NavigateToHelp">Help</MudButton>
+        </MudAppBar>
+
+        <!-- Sidebar Navigation -->
+        <MudDrawer Open="@IsSidebarOpen" Elevation="2" Class="sidebar" Breakpoint="Breakpoint.Md"
+                   Style="background: linear-gradient(180deg, #FFFFFF, #FFFFFF); color: darkgoldenrod;" ClipMode="DrawerClipMode.Never">
+            <MudNavMenu>
+                <MudNavLink Href="/" Match="NavLinkMatch.All" Class="nav-link">
+                    <MudIcon Icon="@Icons.Material.Filled.Home" /> Home
+                </MudNavLink>
+                <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Class="nav-link">
+                    <MudIcon Icon="@Icons.Material.Filled.Calculate" /> Counter
+                </MudNavLink>
+                <MudNavLink Href="/openweather" Match="NavLinkMatch.Prefix" Class="nav-link">
+                    <MudIcon Icon="@Icons.Material.Filled.Cloud" /> Weather
+                </MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
+
+        <!-- Main Content Area -->
+        <MudMainContent Style="padding: 24px; background-color: #FFF3E0;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <MudPaper Elevation="3" Class="p-4" Style="border-radius: 16px; width: 100%; max-width: 800px;">
+                    <div class="top-row mb-4">
+                        <LogoutText />
+                    </div>
+                    <article>
+                        @Body
+                    </article>
+                </MudPaper>
+            </div>
+        </MudMainContent>
+    </MudLayout>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+</CascadingAuthenticationState>
+
+<style>
+    /* General Sidebar Styles */
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100%;
+        padding-top: 20px;
+        padding-left: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(180deg, #FFDDC1, #FFABAB);
+        color: #4B4B4B;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        width: 250px;
+    }
+
+    /* Sidebar Links */
+    .nav-link {
+        color: orange;
+        font-weight: bold;
+        padding: 12px 20px;
+        border-radius: 10px;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s, transform 0.2s;
+        font-size: 16px;
+        width: 100%;
+    }
+
+        /* Sidebar Link Hover Effect */
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sidebar Icons */
+        .nav-link .mud-icon {
+            margin-right: 12px; /* Add space between icon and text */
+            font-size: 20px;
+        }
+
+    /* Add a hover effect to the sidebar when opened */
+    .sidebar.open {
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Active Nav Link */
+    .nav-link.active {
+        background-color: #FF7043; /* Active background */
+        color: white;
+    }
+
+    /* Sidebar title styling */
+    .sidebar-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #2E2E2E;
+        margin-bottom: 20px;
+    }
+
+    /* Responsive design: Make sidebar smaller on mobile */
+    media (max-width: 768px) {
+        .sidebar
+
+    {
+        width: 200px; /* Reduce width for mobile */
+        padding-left: 15px;
+    }
+
+    .nav-link {
+        font-size: 14px; /* Smaller font size on mobile */
+        padding: 10px 15px; /* Reduce padding */
+    }
+
+    .sidebar-title {
+        font-size: 1rem; /* Smaller font size on mobile */
+    }
+
+    }
+</style>
+
+
+@code {
+    private bool IsSidebarOpen { get; set; } = false;
+
+    private void ToggleSidebar()
+    {
+        IsSidebarOpen = !IsSidebarOpen;
+    }
+     private void NavigateToHelp()
+    {
+        NavigationManager.NavigateTo("/help");
+    }
+}

@@ -1,0 +1,49 @@
+@inherits UserContext
+@rendermode InteractiveServer
+<AuthorizeView>
+    <Authorized>
+
+        <!-- Align logout button to the right -->
+        <MudButton Color="Color.Primary" Variant="Variant.Text" Class="logout-button" OnClick="@logout">Logout</MudButton>
+
+    </Authorized>
+</AuthorizeView>
+
+<style>
+    /* Header Styling */
+
+
+    /* Logo and Navigation Links */
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    /* Logout Button Styling */
+    .logout-button {
+        font-size: 16px;
+        padding: 12px 25px;
+        background: #fff;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+
+@code {
+    async Task logout()
+    {
+        Console.WriteLine("Logging out: " + User.name);
+        await Logout(User.id);
+    }
+}

@@ -1,0 +1,139 @@
+﻿@page "/help"
+
+<MudPaper Elevation="3" Class="p-4 help-container">
+    <div class="help-header">
+        <h1>Help & Support</h1>
+        <p>Find answers, guidance, and support for using the Weather Forecast app.</p>
+    </div>
+
+    <MudDivider />
+
+    <!-- Overview Section -->
+    <section class="help-section">
+        <h2 class="help-title">Overview</h2>
+        <p>
+            The Weather Forecast app provides users with up-to-date weather information, including temperature,
+            conditions, and forecasts for their selected locations. You can save your favorite locations for quick
+            access and track the weather easily.
+        </p>
+    </section>
+
+    <MudDivider />
+
+    <!-- FAQ Section -->
+    <section class="help-section">
+        <h2 class="help-title">Frequently Asked Questions</h2>
+        <ul class="faq-list">
+            <li>
+                <strong>How do I search for weather in a location?</strong>
+                <p>Use the search bar on the weather page to enter a city, then click the "Get Weather" button.</p>
+            </li>
+            <li>
+                <strong>How can I save a location as my favorite?</strong>
+                <p>Once you view the weather for a location, you can save it by clicking the "Save as Favorite" button. Saved locations will appear on your favorites list for quick access.</p>
+            </li>
+            <li>
+                <strong>Why am I not seeing updated weather information?</strong>
+                <p>Ensure your internet connection is active. If the issue persists, try refreshing the page or clearing your browser cache.</p>
+            </li>
+        </ul>
+    </section>
+
+    <MudDivider />
+
+    <!-- Troubleshooting Section -->
+    <section class="help-section">
+        <h2 class="help-title">Troubleshooting</h2>
+        <p>If you're experiencing problems with the app, here are some steps to try:</p>
+        <ol class="troubleshooting-list">
+            <li>Refresh the page to ensure you're viewing the latest data.</li>
+            <li>Clear your browser cache and cookies to fix any temporary issues.</li>
+            <li>Ensure your browser is updated to the latest version.</li>
+            <li>If you're using the mobile app, ensure it is updated to the latest version.</li>
+        </ol>
+    </section>
+
+    <MudDivider />
+
+    <!-- Contact Section -->
+    <section class="help-section">
+        <h2 class="help-title">Contact Support</h2>
+        <p>If you need further assistance, feel free to contact our support team:</p>
+        <ul class="contact-info">
+            <li>Email: <a href="mailto:kavin13102005@gmail.com">kavin13102005@gmail.com</a></li>
+            <li>Phone: +91-7826022406</li>
+            <li>Support Hours: Monday to Friday, 9:00 AM to 5:00 PM (EST)</li>
+        </ul>
+        <p>You can also visit our <a href="https://www.linkedin.com/in/kavinrajsk?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">creator page in LinkedIn</a> for more help.</p>
+    </section>
+</MudPaper>
+
+<style>
+    .help-container {
+        border-radius: 16px;
+        max-width: 800px;
+        margin: auto;
+        margin-top: 32px;
+        background: linear-gradient(to bottom, #ffffff, #ffe0b2);
+        padding: 24px;
+        color: #4B4B4B;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .help-header {
+        text-align: center;
+        color: #FF7043;
+        margin-bottom: 16px;
+    }
+
+        .help-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .help-header p {
+            font-size: 1rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+    .help-section {
+        margin-top: 16px;
+    }
+
+    .help-title {
+        font-size: 1.5rem;
+        color: #FF7043;
+        margin-bottom: 8px;
+    }
+
+    .faq-list,
+    .contact-info,
+    .troubleshooting-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .faq-list li,
+        .contact-info li,
+        .troubleshooting-list li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+            .faq-list li p,
+            .troubleshooting-list li {
+                margin: 4px 0 0 0;
+            }
+
+    .help-section a {
+        color: #FF7043;
+        text-decoration: none;
+    }
+
+        .help-section a:hover {
+            text-decoration: underline;
+        }
+</style>

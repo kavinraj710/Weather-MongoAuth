@@ -1,0 +1,467 @@
+﻿@page "/openweather"
+@attribute [CustomAuthorize("user")]
+@rendermode InteractiveServer
+@inject HttpClient Http
+@inject IConfiguration Configuration
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using MongoAuth.Services
+@inject SupabaseService supabaseService
+@inject AuthenticationStateProvider Auth
+@using MongoAuth.Shared.Models
+@inject ISnackbar Snackbar
+<PageTitle>Weather Forecast</PageTitle>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" rel="stylesheet" />
+    <style>
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: #fff;
+            padding-down: 100px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            font-size: 1.25rem;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #00b4d8;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-control:focus {
+                border-color: #90e0ef;
+                box-shadow: 0px 0px 10px rgba(0, 176, 216, 0.7);
+            }
+
+        .btn-primary {
+            font-size: 1.25rem;
+            padding: 12px 20px;
+            background: #ff6f61;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            transition: background 0.3s ease;
+            margin-left: 20px;
+        }
+
+            .btn-primary:hover {
+                background: #ff3b2a;
+            }
+
+        .weather-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 10px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .weather-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .weather-card i {
+                font-size: 3rem;
+                color: #00b4d8;
+                margin-right: 15px;
+            }
+
+            .weather-card .weather-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .weather-card h5 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #333;
+                
+            }
+
+            .weather-card p {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+
+        .weather-info-column {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+        }
+
+        .weather-description {
+            margin-top: 10px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+            .weather-info-column div {
+                display: flex;
+                flex-direction: column;
+            }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .weather-cards-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .weather-actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+            .weather-actions button {
+                background: #ff6f61;
+                border-radius: 15px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+                margin: 10px 0;
+                color: white;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              
+
+            }
+
+        button.save-favorite {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(to right, #007BFF, #0056b3);
+            border: none;
+            border-radius: 25px; /* Gives a pill-shaped design */
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover.save-favorite {
+                background: linear-gradient(to right, #0056b3, #003c82);
+                transform: translateY(-2px); /* Adds a hover lift effect */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
+            }
+
+        button:active.save-favorite {
+                transform: translateY(1px); /* Subtle press-down effect */
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            }
+
+        .weather-actions button:hover {
+            background: #ff3b2a;
+        }
+
+        media (min-width: 768px) {
+            .weather-actions button
+
+        {
+            width: auto; /* Adjust for larger screens */
+        }
+
+    </style>
+</head>
+
+<h1 class="text-center text-primary mb-5">Weather Forecast</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Location Input -->
+            <div class="input-group mb-3">
+                <input @bind="location" placeholder="Enter city" class="form-control form-control-lg" />
+            </div>
+
+            <!-- Favorite Weather Dropdown -->
+            <div class="input-group mb-3">
+                <select @bind="favoriteWeather" class="form-control form-control-lg">
+                    <option value="">Select your favorite weather condition</option>
+                    <option value="Clear">Clear</option>
+                    <option value="Partially cloudy">Partially cloudy</option>
+                    <option value="Mostly Cloudy">Mostly Cloudy</option>
+                    <option value="Overcast">Overcast</option>
+                    <option value="Showers">Showers</option>
+                    <option value="Rain">Rain</option>
+                    <option value="Thunderstorms">Thunderstorms</option>
+                    <option value="Snow">Snow</option>
+                    <option value="Sleet">Sleet</option>
+                    <option value="Windy">Windy</option>
+                    <option value="Fog">Fog</option>
+                    <option value="Hail">Hail</option>
+                    <option value="Drizzle">Drizzle</option>
+                    <option value="Light Rain">Light Rain</option>
+                    <option value="Heavy Rain">Heavy Rain</option>
+                    <option value="Light Snow">Light Snow</option>
+                    <option value="Heavy Snow">Heavy Snow</option>
+                    <option value="Clear Night">Clear Night</option>
+                    <option value="Partly Cloudy Night">Partly Cloudy Night</option>
+                </select>
+            </div>
+
+            <!-- Get Weather Button -->
+            <div class="weather-actions">
+                <button @onclick="FetchWeather" disabled="@isLoading" class="btn btn-primary btn-lg w-100">
+                    @if (isLoading)
+                    {
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span>Get Weather</span>
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (favoriteWeatherMatched)
+{
+    <div class="alert alert-success mt-4" role="alert">
+        Your favorite weather condition (<strong>@favoriteWeather</strong>) is forecasted in the upcoming days!
+    </div>
+}
+
+<div>
+    <div>
+        @if (forecastData != null && forecastData.Any())
+        {
+            @foreach (var forecast in forecastData.Where(f => string.IsNullOrWhiteSpace(favoriteWeather) || f.Description.Contains(favoriteWeather, StringComparison.OrdinalIgnoreCase)))
+            {
+                var isFavoriteWeather = forecast.Description.Contains(favoriteWeather, StringComparison.OrdinalIgnoreCase);
+                var cardClass = isFavoriteWeather ? "weather-card highlighted-weather" : "weather-card";
+        
+                <div class="@cardClass">
+                    <div class="weather-info">
+                        <i class="wi wi-@forecast.IconCode"></i>
+                        <h5>@forecast.Date.ToShortDateString()</h5>
+                        <p>@forecast.Description</p>
+                        <p><strong>@forecast.TemperatureC.ToString("F1")</strong> °C / <strong>@forecast.TemperatureF.ToString("F1")</strong> °F</p>
+                        <p>Humidity: <strong>@forecast.Humidity</strong> %</p>
+                        <p>Wind: <strong>@forecast.WindSpeed</strong> km/h</p>
+                        <p>Pressure: <strong>@forecast.Pressure</strong> hPa</p>
+                    </div>
+                    <div class="weather-description">
+
+                        <p><strong>Weather Details:</strong></p>
+                        <p><strong>Temperature:</strong> The temperature is expected to be @forecast.TemperatureC.ToString("F1") °C, which is @forecast.TemperatureF.ToString("F1") °F. This is ideal for outdoor activities.</p>
+                        <p><strong>Humidity:</strong> The humidity is @forecast.Humidity%. A higher value indicates a more humid atmosphere, potentially leading to discomfort in warmer conditions.</p>
+                        <p><strong>Wind Speed:</strong> The wind speed of @forecast.WindSpeed km/h is expected to be moderate, which might bring a refreshing breeze.</p>
+                        <p><strong>Pressure:</strong> The atmospheric pressure is expected to be @forecast.Pressure hPa, which can influence weather conditions like cloud cover or storms.</p>
+                    </div>
+                    <div class="weather-actions">
+                        <button class="save-favorite" @onclick="(() => Save(forecast))" id="save-favorite-btn-@forecast.Date">
+                            Save as Favorite
+                        
+                        </button>
+
+
+
+                   
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private string weatherdescrip = string.Empty;
+    private string location = string.Empty;
+    private string favoriteWeather = string.Empty;
+    private bool isLoading = false;
+    private bool favoriteWeatherMatched = false;
+    private string errorMessage = string.Empty;
+    private List<WeatherForecast> forecastData = new();
+  
+
+    private async Task FetchWeather()
+    {
+        if (string.IsNullOrWhiteSpace(location))
+        {
+            errorMessage = "Please enter a valid location.";
+            forecastData = new();
+            StateHasChanged();
+            return;
+        }
+
+        isLoading = true;
+        errorMessage = string.Empty;
+        forecastData = new();
+
+        try
+        {
+            string apiKey = "RVLL3TKWVVUBGTHVYP6MXWAB8";
+            string apiUrl = $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}?key={apiKey}&unitGroup=us";
+
+            var rawResponse = await Http.GetStringAsync(apiUrl);
+            var response = System.Text.Json.JsonSerializer.Deserialize<VisualCrossingApiResponse>(rawResponse, new System.Text.Json.JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            if (response?.Days == null || !response.Days.Any())
+            {
+                errorMessage = "Could not fetch weather data. Try another location.";
+                StateHasChanged();
+                return;
+            }
+
+            forecastData = response.Days.Select(day => new WeatherForecast
+                {
+                    Date = DateOnly.FromDateTime(day.DateTime),
+                    TemperatureF = day.Temp,
+                    TemperatureC = (day.Temp-32)*5/9,
+                    Description = day.Conditions,
+                    IconCode = GetIconCode(day.Icon),
+                    Humidity = day.Humidity,
+                    WindSpeed = day.WindSpeed,
+                    Pressure = day.Pressure,
+                    Precipitation = day.Precipitation
+                }).ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error fetching weather data: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+ 
+    private async Task Save(WeatherForecast forecast)
+    {
+       
+        Snackbar.Add("Added successful!", Severity.Success);
+   
+        var weatherDetails = FormatWeatherDetails(forecast);
+        var registerResult = await supabaseService.SaveFavorite(uname, location, weatherDetails);
+
+        if (registerResult)
+        {
+            // Optional: Show a success message or update the UI
+            Console.WriteLine($"Favorite weather saved: {weatherDetails}");
+        }
+        else
+        {
+            // Handle error case
+            Console.WriteLine("Failed to save favorite weather.");
+        }
+
+    }
+
+
+    private string GetIconCode(string iconCode)
+    {
+        return iconCode.ToLower() switch
+        {
+            "clear-day" => "day-sunny",
+            "clear-night" => "night-clear",
+            "partly-cloudy-day" => "day-cloudy",
+            "partly-cloudy-night" => "night-alt-cloudy",
+            "cloudy" => "cloudy",
+            "rain" => "rain",
+            "snow" => "snow",
+            "sleet" => "sleet",
+            "wind" => "windy",
+            "fog" => "fog",
+            _ => "cloud"
+        };
+    }
+
+    private void CheckFavoriteWeather()
+    {
+        if (string.IsNullOrWhiteSpace(favoriteWeather)) return;
+
+        favoriteWeatherMatched = forecastData.Any(f => f.Description.Contains(favoriteWeather, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; } = DateOnly.MinValue;
+        public string Description { get; set; } = string.Empty;
+        public string IconCode { get; set; } = string.Empty;
+        public double TemperatureC { get; set; }
+        public double TemperatureF { get; set; }
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
+        public double Pressure { get; set; }
+        public double Precipitation { get; set; }
+    }
+
+    private class VisualCrossingApiResponse
+    {
+        public List<VisualCrossingDay> Days { get; set; } = new();
+    }
+
+    private class VisualCrossingDay
+    {
+        public DateTime DateTime { get; set; }
+        public double Temp { get; set; }
+        public string Conditions { get; set; } = string.Empty;
+        public string Icon { get; set; } = string.Empty;
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
+        public double Pressure { get; set; }
+        public double Precipitation { get; set; }
+    }
+    private string FormatWeatherDetails(WeatherForecast forecast)
+    {
+        return $"Date: {forecast.Date.ToShortDateString()}, " +
+               $"Description: {forecast.Description}, " +
+               $"Temperature: {forecast.TemperatureC:F1}°C / {forecast.TemperatureF:F1}°F, " +
+               $"Humidity: {forecast.Humidity}%, " +
+               $"Wind Speed: {forecast.WindSpeed} km/h, " +
+               $"Pressure: {forecast.Pressure} hPa";
+    }
+
+    private string? uname;
+   
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            uname = user.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
+   
+        }
+        else
+        {
+            uname = null;
+           
+        }
+    }
+}
