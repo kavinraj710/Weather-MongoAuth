@@ -1,4 +1,4 @@
-﻿@page "/weathermap"
+@page "/weathermap"
 @inject IJSRuntime JS
 @inject HttpClient Http
 
@@ -217,36 +217,32 @@
 
 
     private async Task LoadWeatherData()
-{
-    locations.Clear();
-    foreach (var city in cityList)
     {
-        var url = $"https://api.open-meteo.com/v1/forecast?latitude={city.Latitude}&longitude={city.Longitude}&current_weather=true";
-        try
+        locations.Clear();
+        var tasks = cityList.Select(async city =>
         {
-            var resp = await Http.GetFromJsonAsync<OpenMeteoCurrentResponse>(url);
-            if (resp?.current_weather != null)
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={city.Latitude}&longitude={city.Longitude}&current_weather=true";
+            try
             {
-                locations.Add(new WeatherLocation
+                var resp = await Http.GetFromJsonAsync<OpenMeteoCurrentResponse>(url);
+                if (resp?.current_weather != null)
                 {
-                    City = city.City,
-                    State = city.State,
-                    Latitude = city.Latitude,
-                    Longitude = city.Longitude,
-                    Weather = TranslateWeatherCode(resp.current_weather.weathercode)
-                });
+                    return new WeatherLocation
+                        {
+                            City = city.City,
+                            State = city.State,
+                            Latitude = city.Latitude,
+                            Longitude = city.Longitude,
+                            Weather = TranslateWeatherCode(resp.current_weather.weathercode)
+                        };
+                }
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error fetching {city.City}: {ex.Message}");
-        }
-
-        await Task.Delay(500); // small delay to avoid hitting the rate limit
-    }
-
-    Console.WriteLine($"Loaded {locations.Count} locations");
-}
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching {city.City}: {ex.Message}");
+            }
+            return null;
+        });
 
         var results = await Task.WhenAll(tasks);
         locations = results.Where(r => r != null).ToList();
