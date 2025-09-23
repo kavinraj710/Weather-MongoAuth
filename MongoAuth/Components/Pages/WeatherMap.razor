@@ -241,11 +241,8 @@
             {
                 Console.WriteLine($"Error fetching {city.City}: {ex.Message}");
             }
-
-            await Task.Delay(500); // small delay to avoid hitting the rate limit
+            await Task.Delay(500); // wait 0.5 seconds between calls
         }
-
-        Console.WriteLine($"Loaded {locations.Count} locations");
     }
 
     private string TranslateWeatherCode(int code) => code switch
