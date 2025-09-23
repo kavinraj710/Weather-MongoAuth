@@ -216,34 +216,115 @@
 
 
 
-    private async Task LoadWeatherData()
+   private async Task LoadWeatherData()
+{
+    // Clear existing locations
+    locations.Clear();
+
+    // Convert cityList to WeatherLocation with static realistic weather
+    locations = cityList.Select(c => new WeatherLocation
     {
-        locations.Clear();
-        foreach (var city in cityList)
-        {
-            var url = $"https://api.open-meteo.com/v1/forecast?latitude={city.Latitude}&longitude={city.Longitude}&current_weather=true";
-            try
-            {
-                var resp = await Http.GetFromJsonAsync<OpenMeteoCurrentResponse>(url);
-                if (resp?.current_weather != null)
-                {
-                    locations.Add(new WeatherLocation
-                        {
-                            City = city.City,
-                            State = city.State,
-                            Latitude = city.Latitude,
-                            Longitude = city.Longitude,
-                            Weather = TranslateWeatherCode(resp.current_weather.weathercode)
-                        });
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error fetching {city.City}: {ex.Message}");
-            }
-            await Task.Delay(500); // wait 0.5 seconds between calls
-        }
-    }
+        City = c.City,
+        State = c.State,
+        Latitude = c.Latitude,
+        Longitude = c.Longitude,
+        Weather = GetCityClimate(c.City) // Assign weather based on city climate
+    }).ToList();
+
+    Console.WriteLine($"Loaded {locations.Count} static locations");
+
+    // Apply filters
+    var filteredLocations = locations
+        .Where(l => string.IsNullOrEmpty(selectedState) || l.State == selectedState)
+        .Where(l => string.IsNullOrEmpty(selectedWeather) || l.Weather == selectedWeather)
+        .ToList();
+
+    Console.WriteLine($"Filtered locations: {filteredLocations.Count}");
+
+    // Update the map via JS
+    await JS.InvokeVoidAsync("updateWeatherMap", filteredLocations);
+}
+
+// Assign weather based on typical climate
+private string GetCityClimate(string city)
+{
+    return city switch
+    {
+        // Northern India
+        "Delhi" => "Clear",
+        "Lucknow" => "Clear",
+        "Kanpur" => "Clear",
+        "Varanasi" => "Clear",
+        "Chandigarh" => "Clear",
+        "Amritsar" => "Clear",
+        "Shimla" => "Cloudy",
+        "Manali" => "Cloudy",
+        "Dharamshala" => "Cloudy",
+        "Srinagar" => "Cloudy",
+        "Jammu" => "Clear",
+        "Leh" => "Clear",
+
+        // Western India
+        "Mumbai" => "Rain",
+        "Pune" => "Rain",
+        "Ahmedabad" => "Clear",
+        "Surat" => "Clear",
+        "Vadodara" => "Clear",
+        "Jaipur" => "Clear",
+        "Udaipur" => "Clear",
+        "Jodhpur" => "Clear",
+
+        // Eastern India
+        "Kolkata" => "Fog",
+        "Darjeeling" => "Cloudy",
+        "Bhagalpur" => "Clear",
+        "Patna" => "Clear",
+        "Gaya" => "Clear",
+        "Ranchi" => "Clear",
+        "Jamshedpur" => "Clear",
+        "Bhubaneswar" => "Clear",
+        "Cuttack" => "Clear",
+        "Puri" => "Clear",
+
+        // Southern India
+        "Bangalore" => "Rain",
+        "Mysore" => "Rain",
+        "Mangalore" => "Rain",
+        "Chennai" => "Clear",
+        "Coimbatore" => "Clear",
+        "Madurai" => "Clear",
+        "Hyderabad" => "Cloudy",
+        "Warangal" => "Cloudy",
+        "Thiruvananthapuram" => "Rain",
+        "Kochi" => "Rain",
+        "Kozhikode" => "Rain",
+
+        // Central India
+        "Bhopal" => "Clear",
+        "Indore" => "Clear",
+        "Gwalior" => "Clear",
+        "Nagpur" => "Clear",
+        "Raipur" => "Clear",
+        "Bilaspur" => "Clear",
+        "Durg" => "Clear",
+
+        // Northeastern India
+        "Guwahati" => "Rain",
+        "Dibrugarh" => "Rain",
+        "Silchar" => "Rain",
+        "Shillong" => "Rain",
+        "Aizawl" => "Rain",
+        "Kohima" => "Rain",
+        "Dimapur" => "Rain",
+        "Gangtok" => "Cloudy",
+
+        // Union Territories
+        "Port Blair" => "Rain",
+        "Kavaratti" => "Rain",
+        "Puducherry" => "Clear",
+        _ => "Clear" // Default
+    };
+}
 
     private string TranslateWeatherCode(int code) => code switch
     {
