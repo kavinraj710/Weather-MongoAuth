@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\js\\weatherMap.js",
+      "PackagePath": "staticwebassets\\js\\weatherMap.js"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MongoAuth.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

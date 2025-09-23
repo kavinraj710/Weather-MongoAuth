@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uiAcI1Y6kpC704T7pRGm9f6dMTwU10eSv+8LMbqnKF8=",
+  "Hash": "/HYeSosq4w2OhlzS6c20s++naKT9JM5jqe0Ul8qlMpU=",
   "Source": "MongoAuth",
   "BasePath": "_content/MongoAuth",
   "Mode": "Default",
@@ -183,6 +183,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\js\\weatherMap.js",
+      "SourceId": "MongoAuth",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\",
+      "BasePath": "_content/MongoAuth",
+      "RelativePath": "js/weatherMap#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ff6gt2y19o",
+      "Integrity": "i2kf4E1XQzRwPdtTPDoBZ0Mau/s2zkGvu4ejsEy5+lg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\weatherMap.js"
     }
   ],
   "Endpoints": [
@@ -659,6 +680,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "js/weatherMap.ff6gt2y19o.js",
+      "AssetFile": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\js\\weatherMap.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1818"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"i2kf4E1XQzRwPdtTPDoBZ0Mau/s2zkGvu4ejsEy5+lg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 23 Sep 2025 14:58:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ff6gt2y19o"
+        },
+        {
+          "Name": "label",
+          "Value": "js/weatherMap.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-i2kf4E1XQzRwPdtTPDoBZ0Mau/s2zkGvu4ejsEy5+lg="
+        }
+      ]
+    },
+    {
+      "Route": "js/weatherMap.js",
+      "AssetFile": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\js\\weatherMap.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1818"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"i2kf4E1XQzRwPdtTPDoBZ0Mau/s2zkGvu4ejsEy5+lg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 23 Sep 2025 14:58:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-i2kf4E1XQzRwPdtTPDoBZ0Mau/s2zkGvu4ejsEy5+lg="
         }
       ]
     }

@@ -13,12 +13,18 @@
 
     <MudLayout>
         <!-- Gradient App Bar -->
+        <!-- Gradient App Bar -->
         <MudAppBar Elevation="4" Class="gradient-appbar" Style="color: white; background-color: orange;">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" @onclick="ToggleSidebar" />
             <center><MudText Typo="Typo.h5">🌧️ Weather Forecast</MudText></center>
             <MudSpacer />
+
+            <!-- Logout button placed left of Help -->
+            <LogoutText />
+
             <MudButton Class="hidden-xs" Style="color: white;" @onclick="NavigateToHelp">Help</MudButton>
         </MudAppBar>
+
 
         <!-- Sidebar Navigation -->
         <MudDrawer Open="@IsSidebarOpen" Elevation="2" Class="sidebar" Breakpoint="Breakpoint.Md"
@@ -27,11 +33,15 @@
                 <MudNavLink Href="/" Match="NavLinkMatch.All" Class="nav-link">
                     <MudIcon Icon="@Icons.Material.Filled.Home" /> Home
                 </MudNavLink>
-                <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Class="nav-link">
-                    <MudIcon Icon="@Icons.Material.Filled.Calculate" /> Counter
-                </MudNavLink>
+
                 <MudNavLink Href="/openweather" Match="NavLinkMatch.Prefix" Class="nav-link">
                     <MudIcon Icon="@Icons.Material.Filled.Cloud" /> Weather
+                </MudNavLink>
+                <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Class="nav-link">
+                    <MudIcon Icon="@Icons.Material.Filled.Calculate" /> Comparison
+                </MudNavLink>
+                <MudNavLink Href="/weathermap" Match="NavLinkMatch.Prefix" Class="nav-link">
+                    <MudIcon Icon="@Icons.Material.Filled.Calculate" /> Weather Map
                 </MudNavLink>
             </MudNavMenu>
         </MudDrawer>
@@ -40,9 +50,7 @@
         <MudMainContent Style="padding: 24px; background-color: #FFF3E0;">
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <MudPaper Elevation="3" Class="p-4" Style="border-radius: 16px; width: 100%; max-width: 800px;">
-                    <div class="top-row mb-4">
-                        <LogoutText />
-                    </div>
+
                     <article>
                         @Body
                     </article>

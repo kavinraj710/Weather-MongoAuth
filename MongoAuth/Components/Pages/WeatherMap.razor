@@ -1,0 +1,277 @@
+﻿@page "/weathermap"
+@inject IJSRuntime JS
+@inject HttpClient Http
+
+<div class="container-fluid p-3">
+    <h1 class="text-center mb-3">🌍 Live Weather Map (India)</h1>
+
+    <div class="filters mb-3 d-flex gap-3 flex-wrap">
+        <div>
+            <label>State / UT:</label>
+            <select class="form-control" @bind="SelectedState">
+                <option value="">All States / UTs</option>
+                @foreach (var state in states)
+                {
+                    <option value="@state">@state</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <label>Weather:</label>
+            <select class="form-control" @bind="SelectedWeather">
+                <option value="">All</option>
+                <option value="Clear">Clear / Sunny</option>
+                <option value="Partly Cloudy">Partly Cloudy</option>
+                <option value="Cloudy">Cloudy / Overcast</option>
+                <option value="Rain">Rain</option>
+                <option value="Light Rain">Light Rain / Showers</option>
+                <option value="Heavy Rain">Heavy Rain</option>
+                <option value="Thunderstorm">Thunderstorm</option>
+                <option value="Drizzle">Drizzle</option>
+                <option value="Snow">Snow</option>
+                <option value="Light Snow">Light Snow</option>
+                <option value="Heavy Snow">Heavy Snow</option>
+                <option value="Sleet">Sleet</option>
+                <option value="Hail">Hail</option>
+                <option value="Fog">Fog / Mist</option>
+                <option value="Haze">Haze</option>
+                <option value="Smoke">Smoke</option>
+                <option value="Dust">Dust / Sandstorm</option>
+                <option value="Windy">Windy</option>
+                <option value="Tornado">Tornado / Cyclone / Hurricane</option>
+            </select>
+
+        </div>
+    </div>
+
+    <div id="weatherMap" style="height:80vh; width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);"></div>
+</div>
+
+@code {
+    private string selectedState = "";
+    private string selectedWeather = "";
+    private List<WeatherLocation> locations = new();
+    private List<CityInfo> cityList = new() {
+        new() { City="Visakhapatnam", State="Andhra Pradesh", Latitude=17.6868, Longitude=83.2185 },
+    new() { City="Vijayawada", State="Andhra Pradesh", Latitude=16.5062, Longitude=80.6480 },
+    new() { City="Guntur", State="Andhra Pradesh", Latitude=16.3067, Longitude=80.4365 },
+    new() { City="Tirupati", State="Andhra Pradesh", Latitude=13.6288, Longitude=79.4192 },
+    new() { City="Amaravati", State="Andhra Pradesh", Latitude=16.5417, Longitude=80.5150 },
+
+    // Arunachal Pradesh
+    new() { City="Itanagar", State="Arunachal Pradesh", Latitude=27.0844, Longitude=93.6053 },
+    new() { City="Tawang", State="Arunachal Pradesh", Latitude=27.5869, Longitude=91.8596 },
+    new() { City="Ziro", State="Arunachal Pradesh", Latitude=27.6166, Longitude=93.8281 },
+
+    // Assam
+    new() { City="Guwahati", State="Assam", Latitude=26.1445, Longitude=91.7362 },
+    new() { City="Dibrugarh", State="Assam", Latitude=27.4728, Longitude=94.9113 },
+    new() { City="Silchar", State="Assam", Latitude=24.8333, Longitude=92.7789 },
+
+    // Bihar
+    new() { City="Patna", State="Bihar", Latitude=25.5941, Longitude=85.1376 },
+    new() { City="Gaya", State="Bihar", Latitude=24.7950, Longitude=85.0000 },
+    new() { City="Bhagalpur", State="Bihar", Latitude=25.2443, Longitude=86.9842 },
+
+    // Chhattisgarh
+    new() { City="Raipur", State="Chhattisgarh", Latitude=21.2514, Longitude=81.6296 },
+    new() { City="Bilaspur", State="Chhattisgarh", Latitude=22.0797, Longitude=82.1391 },
+    new() { City="Durg", State="Chhattisgarh", Latitude=21.1900, Longitude=81.2800 },
+
+    // Goa
+    new() { City="Panaji", State="Goa", Latitude=15.4909, Longitude=73.8278 },
+    new() { City="Margao", State="Goa", Latitude=15.2993, Longitude=73.9625 },
+    new() { City="Vasco da Gama", State="Goa", Latitude=15.3997, Longitude=73.8120 },
+
+    // Gujarat
+    new() { City="Ahmedabad", State="Gujarat", Latitude=23.0225, Longitude=72.5714 },
+    new() { City="Surat", State="Gujarat", Latitude=21.1702, Longitude=72.8311 },
+    new() { City="Vadodara", State="Gujarat", Latitude=22.3072, Longitude=73.1812 },
+
+    // Haryana
+    new() { City="Chandigarh", State="Haryana", Latitude=30.7333, Longitude=76.7794 },
+    new() { City="Gurugram", State="Haryana", Latitude=28.4595, Longitude=77.0266 },
+    new() { City="Faridabad", State="Haryana", Latitude=28.4089, Longitude=77.3178 },
+
+    // Himachal Pradesh
+    new() { City="Shimla", State="Himachal Pradesh", Latitude=31.1048, Longitude=77.1734 },
+    new() { City="Manali", State="Himachal Pradesh", Latitude=32.2432, Longitude=77.1892 },
+    new() { City="Dharamshala", State="Himachal Pradesh", Latitude=32.2190, Longitude=76.3234 },
+
+    // Jammu & Kashmir
+    new() { City="Srinagar", State="Jammu and Kashmir", Latitude=34.0837, Longitude=74.7973 },
+    new() { City="Jammu", State="Jammu and Kashmir", Latitude=32.7266, Longitude=74.8570 },
+
+    // Jharkhand
+    new() { City="Ranchi", State="Jharkhand", Latitude=23.3441, Longitude=85.3096 },
+    new() { City="Jamshedpur", State="Jharkhand", Latitude=22.8046, Longitude=86.2029 },
+
+    // Karnataka
+    new() { City="Bangalore", State="Karnataka", Latitude=12.9716, Longitude=77.5946 },
+    new() { City="Mysore", State="Karnataka", Latitude=12.2958, Longitude=76.6394 },
+    new() { City="Mangalore", State="Karnataka", Latitude=12.9141, Longitude=74.8560 },
+
+    // Kerala
+    new() { City="Thiruvananthapuram", State="Kerala", Latitude=8.5241, Longitude=76.9366 },
+    new() { City="Kochi", State="Kerala", Latitude=9.9312, Longitude=76.2673 },
+    new() { City="Kozhikode", State="Kerala", Latitude=11.2588, Longitude=75.7804 },
+
+    // Madhya Pradesh
+    new() { City="Bhopal", State="Madhya Pradesh", Latitude=23.2599, Longitude=77.4126 },
+    new() { City="Indore", State="Madhya Pradesh", Latitude=22.7196, Longitude=75.8577 },
+    new() { City="Gwalior", State="Madhya Pradesh", Latitude=26.2183, Longitude=78.1828 },
+
+    // Maharashtra
+    new() { City="Mumbai", State="Maharashtra", Latitude=19.0760, Longitude=72.8777 },
+    new() { City="Pune", State="Maharashtra", Latitude=18.5204, Longitude=73.8567 },
+    new() { City="Nagpur", State="Maharashtra", Latitude=21.1458, Longitude=79.0882 },
+
+    // Manipur
+    new() { City="Imphal", State="Manipur", Latitude=24.8170, Longitude=93.9368 },
+
+    // Meghalaya
+    new() { City="Shillong", State="Meghalaya", Latitude=25.5788, Longitude=91.8933 },
+
+    // Mizoram
+    new() { City="Aizawl", State="Mizoram", Latitude=23.7367, Longitude=92.7176 },
+
+    // Nagaland
+    new() { City="Kohima", State="Nagaland", Latitude=25.6751, Longitude=94.1086 },
+    new() { City="Dimapur", State="Nagaland", Latitude=25.9200, Longitude=93.7266 },
+
+    // Odisha
+    new() { City="Bhubaneswar", State="Odisha", Latitude=20.2961, Longitude=85.8245 },
+    new() { City="Cuttack", State="Odisha", Latitude=20.4625, Longitude=85.8828 },
+    new() { City="Puri", State="Odisha", Latitude=19.8135, Longitude=85.8312 },
+
+    // Punjab
+    new() { City="Chandigarh", State="Punjab", Latitude=30.7333, Longitude=76.7794 },
+    new() { City="Ludhiana", State="Punjab", Latitude=30.9000, Longitude=75.8573 },
+    new() { City="Amritsar", State="Punjab", Latitude=31.6340, Longitude=74.8723 },
+
+    // Rajasthan
+    new() { City="Jaipur", State="Rajasthan", Latitude=26.9124, Longitude=75.7873 },
+    new() { City="Udaipur", State="Rajasthan", Latitude=24.5854, Longitude=73.7125 },
+    new() { City="Jodhpur", State="Rajasthan", Latitude=26.2389, Longitude=73.0243 },
+
+    // Sikkim
+    new() { City="Gangtok", State="Sikkim", Latitude=27.3389, Longitude=88.6065 },
+
+    // Tamil Nadu
+    new() { City="Chennai", State="Tamil Nadu", Latitude=13.0827, Longitude=80.2707 },
+    new() { City="Coimbatore", State="Tamil Nadu", Latitude=11.0168, Longitude=76.9558 },
+    new() { City="Madurai", State="Tamil Nadu", Latitude=9.9252, Longitude=78.1198 },
+
+    // Telangana
+    new() { City="Hyderabad", State="Telangana", Latitude=17.3850, Longitude=78.4867 },
+    new() { City="Warangal", State="Telangana", Latitude=17.9789, Longitude=79.5916 },
+
+    // Tripura
+    new() { City="Agartala", State="Tripura", Latitude=23.8315, Longitude=91.2868 },
+
+    // Uttar Pradesh
+    new() { City="Lucknow", State="Uttar Pradesh", Latitude=26.8467, Longitude=80.9462 },
+    new() { City="Kanpur", State="Uttar Pradesh", Latitude=26.4499, Longitude=80.3319 },
+    new() { City="Varanasi", State="Uttar Pradesh", Latitude=25.3176, Longitude=82.9739 },
+
+    // Uttarakhand
+    new() { City="Dehradun", State="Uttarakhand", Latitude=30.3165, Longitude=78.0322 },
+    new() { City="Haridwar", State="Uttarakhand", Latitude=29.9457, Longitude=78.1642 },
+
+    // West Bengal
+    new() { City="Kolkata", State="West Bengal", Latitude=22.5726, Longitude=88.3639 },
+    new() { City="Darjeeling", State="West Bengal", Latitude=27.0360, Longitude=88.2627 },
+
+    // Union Territories
+    new() { City="Port Blair", State="Andaman and Nicobar Islands", Latitude=11.667, Longitude=92.735 },
+    new() { City="Kavaratti", State="Lakshadweep", Latitude=10.57, Longitude=72.64 },
+    new() { City="Puducherry", State="Puducherry", Latitude=11.9416, Longitude=79.8083 },
+    new() { City="Delhi", State="Delhi", Latitude=28.6139, Longitude=77.2090 },
+    new() { City="Leh", State="Ladakh", Latitude=34.1526, Longitude=77.5770 },
+    };
+
+    private List<string> states => cityList.Select(c => c.State).Distinct().ToList();
+
+    private string SelectedState
+    {
+        get => selectedState;
+        set { selectedState = value; _ = UpdateMap(); }
+    }
+
+    private string SelectedWeather
+    {
+        get => selectedWeather;
+        set { selectedWeather = value; _ = UpdateMap(); }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initWeatherMap");
+            await LoadWeatherData();
+            await UpdateMap(); // only after map and data are ready
+        }
+    }
+
+
+
+    private async Task LoadWeatherData()
+    {
+        locations.Clear();
+        var tasks = cityList.Select(async city =>
+        {
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={city.Latitude}&longitude={city.Longitude}&current_weather=true";
+            try
+            {
+                var resp = await Http.GetFromJsonAsync<OpenMeteoCurrentResponse>(url);
+                if (resp?.current_weather != null)
+                {
+                    return new WeatherLocation
+                        {
+                            City = city.City,
+                            State = city.State,
+                            Latitude = city.Latitude,
+                            Longitude = city.Longitude,
+                            Weather = TranslateWeatherCode(resp.current_weather.weathercode)
+                        };
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching {city.City}: {ex.Message}");
+            }
+            return null;
+        });
+
+        var results = await Task.WhenAll(tasks);
+        locations = results.Where(r => r != null).ToList();
+        Console.WriteLine($"Loaded {locations.Count} locations");
+    }
+
+    private string TranslateWeatherCode(int code) => code switch
+    {
+        0 => "Clear",
+        1 or 2 or 3 => "Cloudy",
+        45 or 48 => "Fog",
+        51 or 53 or 55 or 61 or 63 or 65 => "Rain",
+        71 or 73 or 75 or 77 or 85 or 86 => "Snow",
+        _ => "Cloudy"
+    };
+
+    private async Task UpdateMap()
+    {
+        var filtered = locations
+            .Where(l => (string.IsNullOrEmpty(SelectedState) || l.State == SelectedState)
+                     && (string.IsNullOrEmpty(SelectedWeather) || l.Weather == SelectedWeather))
+            .ToList();
+
+        Console.WriteLine($"Filtered locations: {filtered.Count}");
+        await JS.InvokeVoidAsync("updateWeatherMap", filtered);
+    }
+
+    public class CityInfo { public string City { get; set; } public string State { get; set; } public double Latitude { get; set; } public double Longitude { get; set; } }
+    public class WeatherLocation : CityInfo { public string Weather { get; set; } }
+    public class OpenMeteoCurrentResponse { public CurrentWeather current_weather { get; set; } }
+    public class CurrentWeather { public double temperature { get; set; } public double windspeed { get; set; } public int weathercode { get; set; } }
+}

@@ -1,26 +1,241 @@
 ﻿@page "/counter"
 @attribute [CustomAuthorize("admin", "user")]
 @rendermode InteractiveServer
-@inject NavigationManager Navigation
-@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject HttpClient Http
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Weather Comparison</PageTitle>
 
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="text-center">
-        <h1>Counter</h1>
+<div class="container-fluid min-vh-100 d-flex flex-column justify-content-start py-5"
+     style="background-color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
 
-        <p role="status" class="h4">Current count: @currentCount</p>
+    <h1 class="text-center mb-5 display-4 text-dark">🌍 Weather Comparison</h1>
 
-        <button class="btn btn-primary btn-lg" @onclick="IncrementCount">Click me</button>
+    <!-- Input Row -->
+    <div class="row mb-5 justify-content-center">
+        <div class="col-md-4 mb-2">
+            <input @bind="city1" placeholder="Enter first city" class="form-control form-control-lg text-center shadow-sm" />
+        </div>
+        <div class="col-md-1 text-center align-self-center fw-bold text-dark display-6">vs</div>
+        <div class="col-md-4 mb-2">
+            <input @bind="city2" placeholder="Enter second city" class="form-control form-control-lg text-center shadow-sm" />
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <button class="btn btn-warning btn-lg px-5 shadow-lg" @onclick="CompareWeather" disabled="@isLoading">
+            @if (isLoading)
+            {
+                <span class="spinner-border spinner-border-sm"></span>
+            }
+            else
+            {
+                <span>Compare</span>
+            }
+        </button>
+    </div>
+
+    <!-- Results Section -->
+    <div class="row g-4 justify-content-center flex-grow-1">
+        @if (weather1 != null && weather2 != null)
+        {
+            <!-- City 1 -->
+            <div class="col-md-5">
+                <div class="card shadow-lg rounded-4 border-0 h-100 bg-light">
+                    <div class="card-body text-center">
+                        <h3 class="mb-3 text-dark">@weather1.Location</h3>
+                        <p class="lead text-dark">@weather1.Description</p>
+                        <p>🌡️ Temp: <b>@weather1.TempC.ToString("F1") °C</b></p>
+                        <p>💧 Humidity: <b>@weather1.Humidity%</b></p>
+                        <p>🌬️ Wind: <b>@weather1.WindSpeed km/h</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- City 2 -->
+            <div class="col-md-5">
+                <div class="card shadow-lg rounded-4 border-0 h-100 bg-light">
+                    <div class="card-body text-center">
+                        <h3 class="mb-3 text-dark">@weather2.Location</h3>
+                        <p class="lead text-dark">@weather2.Description</p>
+                        <p>🌡️ Temp: <b>@weather2.TempC.ToString("F1") °C</b></p>
+                        <p>💧 Humidity: <b>@weather2.Humidity%</b></p>
+                        <p>🌬️ Wind: <b>@weather2.WindSpeed km/h</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="col-md-10 mt-5">
+                <div class="card shadow-lg rounded-4">
+                    <div class="card-body">
+                        <h4 class="text-center mb-3 text-dark">📊 Side-by-Side Comparison</h4>
+                        <table class="table table-bordered text-center mb-0" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>@weather1.Location</th>
+                                    <th>@weather2.Location</th>
+                                    <th>Difference</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temperature (°C)</td>
+                                    <td>@weather1.TempC.ToString("F1")</td>
+                                    <td>@weather2.TempC.ToString("F1")</td>
+                                    <td>@Math.Abs(weather1.TempC - weather2.TempC).ToString("F1") °C</td>
+                                </tr>
+                                <tr>
+                                    <td>Humidity (%)</td>
+                                    <td>@weather1.Humidity</td>
+                                    <td>@weather2.Humidity</td>
+                                    <td>@Math.Abs(weather1.Humidity - weather2.Humidity)%</td>
+                                </tr>
+                                <tr>
+                                    <td>Wind Speed (km/h)</td>
+                                    <td>@weather1.WindSpeed</td>
+                                    <td>@weather2.WindSpeed</td>
+                                    <td>@Math.Abs(weather1.WindSpeed - weather2.WindSpeed)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rule-based Suggestion -->
+            <div class="col-md-10 mt-5">
+                <div class="card border-0 shadow-lg rounded-4 bg-light p-4">
+                    <h4 class="mb-3 text-dark">📝 Weather Suggestion</h4>
+                    <p class="lead text-dark" style="font-size:1.2rem; line-height:1.5;">@GenerateSuggestion(weather1, weather2)</p>
+                </div>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="col-md-8">
+                <div class="alert alert-danger text-center">@errorMessage</div>
+            </div>
+        }
     </div>
 </div>
 
 @code {
-    private int currentCount = 0;
+    private string city1 = string.Empty;
+    private string city2 = string.Empty;
+    private WeatherData? weather1;
+    private WeatherData? weather2;
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
 
-    private void IncrementCount()
+    private async Task CompareWeather()
     {
-        currentCount++;
+        if (string.IsNullOrWhiteSpace(city1) || string.IsNullOrWhiteSpace(city2))
+        {
+            errorMessage = "Please enter both cities.";
+            return;
+        }
+
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+
+            weather1 = await FetchWeather(city1);
+            weather2 = await FetchWeather(city2);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error fetching weather: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task<WeatherData?> FetchWeather(string city)
+    {
+        string apiKey = "RVLL3TKWVVUBGTHVYP6MXWAB8";
+        string apiUrl = $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}?key={apiKey}&unitGroup=us";
+
+        var rawResponse = await Http.GetStringAsync(apiUrl);
+        var response = System.Text.Json.JsonSerializer.Deserialize<VisualCrossingApiResponse>(rawResponse,
+            new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        var today = response?.Days?.FirstOrDefault();
+        if (today != null)
+        {
+            return new WeatherData
+                {
+                    Location = city,
+                    TempF = today.Temp,
+                    TempC = (today.Temp - 32) * 5 / 9,
+                    Description = today.Conditions,
+                    Humidity = today.Humidity,
+                    WindSpeed = today.WindSpeed
+                };
+        }
+        return null;
+    }
+
+    private string GenerateSuggestion(WeatherData w1, WeatherData w2)
+    {
+        string s = "";
+
+        // Compare temperatures 🌡️
+        if (w1.TempC > w2.TempC + 5)
+            s += $"🌡️ {w2.Location} is cooler than {w1.Location}. ";
+        else if (w2.TempC > w1.TempC + 5)
+            s += $"🌡️ {w1.Location} is cooler than {w2.Location}. ";
+        else
+            s += "🌡️ Both cities have similar temperatures. ";
+
+        // Compare humidity 💧
+        if (w1.Humidity > w2.Humidity + 10)
+            s += $"💧 {w2.Location} is less humid than {w1.Location}. ";
+        else if (w2.Humidity > w1.Humidity + 10)
+            s += $"💧 {w1.Location} is less humid than {w2.Location}. ";
+        else
+            s += "💧 Humidity levels are fairly similar. ";
+
+        // Compare wind 🌬️
+        if (w1.WindSpeed > w2.WindSpeed + 5)
+            s += $"🌬️ {w2.Location} is calmer with less wind than {w1.Location}. ";
+        else if (w2.WindSpeed > w1.WindSpeed + 5)
+            s += $"🌬️ {w1.Location} is calmer with less wind than {w2.Location}. ";
+        else
+            s += "🌬️ Wind conditions are quite similar. ";
+
+        // General advice 📝
+        double avgTemp = (w1.TempC + w2.TempC) / 2;
+        if (avgTemp < 10)
+            s += "🧣 Dress warmly if visiting either city.";
+        else if (avgTemp > 30)
+            s += "☀️ Stay hydrated and wear light clothing.";
+        else
+            s += "🌿 Weather is moderate, a perfect time for outdoor activities.";
+
+        return s;
+    }
+
+    private class WeatherData
+    {
+        public string Location { get; set; } = "";
+        public double TempC { get; set; }
+        public double TempF { get; set; }
+        public string Description { get; set; } = "";
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
+    }
+
+    private class VisualCrossingApiResponse { public List<VisualCrossingDay> Days { get; set; } = new(); }
+    private class VisualCrossingDay
+    {
+        public DateTime DateTime { get; set; }
+        public double Temp { get; set; }
+        public string Conditions { get; set; } = "";
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
     }
 }

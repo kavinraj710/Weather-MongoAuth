@@ -1,0 +1,17 @@
+﻿# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# Rider / JetBrains IDE
+.idea/
+
+# Node / npm
+node_modules/
+
+# Logs
+*.log
