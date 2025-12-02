@@ -1,4 +1,4 @@
-name: Deploy Weather App to Render
+nname: Deploy Weather App to Render
 
 on:
   push:
@@ -13,6 +13,25 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # ✅ Setup .NET for build & tests
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      # ✅ Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # ✅ Build the application
+      - name: Build project
+        run: dotnet build --no-restore --configuration Release
+
+      # ✅ Run tests (deployment stops if this fails)
+      - name: Run tests
+        run: dotnet test --no-build --configuration Release
+
+      # ✅ Deploy to Render (runs ONLY if tests pass)
       - name: Trigger Render Deployment
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
