@@ -30,8 +30,11 @@ var supabaseOptions = new Supabase.SupabaseOptions
     AutoRefreshToken = true, // Automatically refresh tokens when they expire
     //PersistSession = true    // Persist session across application restarts
 };
-var supabaseUrl = builder.Configuration["Supabase:Url"];
-var supabaseKey = builder.Configuration["Supabase:Key"];
+var supabaseUrl = builder.Configuration["Supabase:Url"] 
+                   ?? Environment.GetEnvironmentVariable("SUPABASE_URL");
+
+var supabaseKey = builder.Configuration["Supabase:Key"] 
+                   ?? Environment.GetEnvironmentVariable("SUPABASE_KEY");
 var supabaseClient = new Supabase.Client(supabaseUrl, supabaseKey, supabaseOptions);
 
 builder.Services.AddSingleton(supabaseClient);

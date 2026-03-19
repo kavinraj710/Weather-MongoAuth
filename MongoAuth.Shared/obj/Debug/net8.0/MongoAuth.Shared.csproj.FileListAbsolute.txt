@@ -24,3 +24,16 @@ C:\Users\KAVIN\source\repos\MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAut
 C:\Users\KAVIN\source\repos\MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\refint\MongoAuth.Shared.dll
 C:\Users\KAVIN\source\repos\MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.pdb
 C:\Users\KAVIN\source\repos\MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\ref\MongoAuth.Shared.dll
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\bin\Debug\net8.0\MongoAuth.Shared.deps.json
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\bin\Debug\net8.0\MongoAuth.Shared.dll
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\bin\Debug\net8.0\MongoAuth.Shared.pdb
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.csproj.AssemblyReference.cache
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.AssemblyInfoInputs.cache
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.AssemblyInfo.cs
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.csproj.CoreCompileInputs.cache
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.sourcelink.json
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.dll
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\refint\MongoAuth.Shared.dll
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\MongoAuth.Shared.pdb
+D:\Kavinraj\Weather-MongoAuth\MongoAuth.Shared\obj\Debug\net8.0\ref\MongoAuth.Shared.dll

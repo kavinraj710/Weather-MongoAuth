@@ -1969,23 +1969,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KAVIN\\.nuget\\packages\\": {},
+    "C:\\Users\\appuk\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\MongoAuth.Shared.csproj",
+      "projectUniqueName": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth.Shared\\MongoAuth.Shared.csproj",
       "projectName": "MongoAuth.Shared",
-      "projectPath": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\MongoAuth.Shared.csproj",
-      "packagesPath": "C:\\Users\\KAVIN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth.Shared\\obj\\",
+      "projectPath": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth.Shared\\MongoAuth.Shared.csproj",
+      "packagesPath": "C:\\Users\\appuk\\.nuget\\packages\\",
+      "outputPath": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\KAVIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\appuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

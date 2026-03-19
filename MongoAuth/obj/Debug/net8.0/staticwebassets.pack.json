@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\app.css",
+      "Id": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\favicon.png",
+      "Id": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\KAVIN\\source\\repos\\MongoAuth\\MongoAuth\\wwwroot\\js\\weatherMap.js",
+      "Id": "D:\\Kavinraj\\Weather-MongoAuth\\MongoAuth\\wwwroot\\js\\weatherMap.js",
       "PackagePath": "staticwebassets\\js\\weatherMap.js"
     },
     {
