@@ -40,4 +40,4 @@ jobs:
       - name: Trigger ASG Refresh
         run: |
           aws autoscaling start-instance-refresh \
-            --auto-scaling-group-name YOUR_ASG_NAME
+            --auto-scaling-group-name Weather_ASG
