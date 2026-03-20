@@ -1,4 +1,4 @@
-name: Build & Push Docker Image
+name: Build, Push & Deploy
 
 on:
   push:
@@ -9,15 +9,35 @@ jobs:
   docker:
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write   # required for OIDC
+      contents: read
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # 🔐 Docker Hub Login
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      # 🐳 Build Image
       - name: Build Image
         run: docker build -t kavin4066/mongoauth:latest .
 
+      # 🚀 Push Image
       - name: Push Image
         run: docker push kavin4066/mongoauth:latest
+
+      # 🔑 Configure AWS (OIDC)
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ap-south-1
+
+      # 🔥 Trigger ASG Instance Refresh
+      - name: Trigger ASG Refresh
+        run: |
+          aws autoscaling start-instance-refresh \
+            --auto-scaling-group-name YOUR_ASG_NAME
