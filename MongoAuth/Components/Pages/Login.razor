@@ -20,32 +20,140 @@
         </div>
     </Authorizing>
     <NotAuthorized>
-        <MudContainer MaxWidth="MaxWidth.Small" Class="mt-16 login-container">
-            <MudCard Class="login-card">
-                <MudCardHeader>
-                    <MudText Typo="Typo.h5">Login 🔐</MudText>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudTextField @bind-Value="Email" Label="Email" Required="true"
-                                  RequiredError="Email is required!" InputType="InputType.Email" Class="input-field"/>
-                    <MudTextField @bind-Value="Password" Label="Password" Required="true"
-                                  RequiredError="Password is required!" InputType="InputType.Password" Class="input-field"/>
-                </MudCardContent>
-                <MudCardActions Class="d-flex justify-content-center">
-                    <MudButton OnClick="HandleLogin" Variant="Variant.Filled" Color="Color.Primary" Class="login-btn">
-                        Login
-                    </MudButton>
-                </MudCardActions>
-                <MudCardActions Class="d-flex justify-content-center">
-                    <MudButton OnClick="Signuphandle" Variant="Variant.Text" Color="Color.Secondary" Class="signup-link">
-                        Not already Registered?
-                    </MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudContainer>
-    </NotAuthorized>
-</AuthorizeView>
+    <div class="login-wrapper">
 
+        <div class="login-card">
+
+            <!-- Left Side (Branding / Illustration) -->
+            <div class="login-left">
+                <h1>Welcome Back 👋</h1>
+                <p>Access your dashboard and continue your journey</p>
+            </div>
+
+            <!-- Right Side (Form) -->
+            <div class="login-right">
+
+                <h2>Login</h2>
+
+                <MudTextField @bind-Value="Email"
+                              Label="Email"
+                              Variant="Variant.Outlined"
+                              StartIcon="@Icons.Material.Filled.Email"
+                              FullWidth="true"
+                              Class="mb-3" />
+
+                <MudTextField @bind-Value="Password"
+                              Label="Password"
+                              Variant="Variant.Outlined"
+                              StartIcon="@Icons.Material.Filled.Lock"
+                              InputType="InputType.Password"
+                              FullWidth="true"
+                              Class="mb-2" />
+
+                <MudButton OnClick="HandleLogin"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           FullWidth="true"
+                           Class="login-btn">
+                    Login
+                </MudButton>
+
+                <div class="signup">
+                    <span>Don't have an account?</span>
+                    <a @onclick="Signuphandle">Sign up</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</NotAuthorized>
+</AuthorizeView>
+<style>
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3e8d5; /* same beige tone as app background */
+}
+
+.login-card {
+    display: flex;
+    width: 850px;
+    max-width: 95%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Left Side - match app theme */
+.login-left {
+    flex: 1;
+    background: orange; /* app orange */
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-left h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.login-left p {
+    opacity: 0.9;
+}
+
+/* Right Side */
+.login-right {
+    flex: 1;
+    padding: 40px;
+}
+
+.login-right h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Button aligned with theme */
+.login-btn {
+    margin-top: 15px;
+    border-radius: 8px;
+    height: 45px;
+    background-color: #f59e0b !important;
+    color: white !important;
+}
+
+/* Signup */
+.signup {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.signup a {
+    color: #f59e0b;
+    margin-left: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Responsive */
+media (max-width: 768px) {
+    .login-card {
+        flex-direction: column;
+    }
+
+    .login-left {
+        display: none;
+    }
+}
+</style>
 @code {
     User? user { get; set; }
 
